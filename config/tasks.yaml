@@ -1,0 +1,15 @@
+research_credit_report_task:
+  description: >
+    Conduct a comprehensive analysis of a provided credit report to identify key factors impacting the
+    individual's creditworthiness and provide insights to inform decision-making. Evaluate the overall creditworthiness
+    of the individual based on the analysis. Identify any potential risk factors that may impact creditworthiness.
+
+  expected_output: >
+    A  concise list of key factors that will be crucial in deciding whether to approve or deny a loan application.
+
+loan_assesment_task:
+  description: >
+    Based on the key factors from the risk agent, write a concise and precise credit decision report. The report should
+    include an overall creditworthiness assessment, identify potential risk factors, and provide a clear recommendation.
+  expected_output: >
+    A concise and precise credit decision report. The report should be limited to one page or less.

@@ -1,0 +1,18 @@
+portkey:
+  # Enable/disable Portkey integration
+  enabled: true
+  
+  # Portkey API configuration
+  api:
+    base_url: "https://api.portkey.ai/v1"
+    api_key: "cmG+"  # Replace with your actual API key
+    virtual_key: "open-ai-virtua"    # Replace with your actual virtual key
+  
+  # Model settings
+  model:
+    name: "gpt-4o"
+    max_tokens: 3000
+    temperature: 0
+
+
+    

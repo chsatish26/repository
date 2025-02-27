@@ -1,0 +1,43 @@
+1. **Credit Scores**:
+   - Sam Sample: Current Score 560, Potential Score 630 (+60 improvement)
+   - Pat Sample: Current Score 680, Potential Score 725 (+45 improvement)
+
+2. **Summary of Accounts with Balances**:
+   - Total Accounts: 37
+   - Total Monthly Payments: $5,002
+   - Total Balances Remaining: $83,864
+   - Past Due Accounts: 14 (37.84% of total accounts)
+   - Total Amounts Past Due: $21,180
+
+3. **Account Types**:
+   - Collection Accounts: 3 accounts, $6,899 total balance, 100% past due
+   - Installment Accounts: 10 accounts, $17,673 total balance, 20% past due, $557 past due
+   - Revolving Accounts: 24 accounts, $59,292 total balance, 37.5% past due, $13,724 past due
+
+4. **Alerts**:
+   - SSN Match: Exact match between SSN on input and SSN on file
+
+5. **Address and Employment Variations**:
+   - Multiple address variations reported, indicating potential instability or frequent moves.
+   - Employment history shows multiple employers, which may indicate job instability.
+
+6. **Public Records**:
+   - No bankruptcies, liens, or judgments reported.
+
+7. **Liabilities**:
+   - Non-Mortgage Liabilities with Balances: 37 accounts
+   - Liabilities without Balances: 30 accounts
+
+**Key Risk Factors**:
+- High percentage of past due accounts (37.84%).
+- Significant total amount past due ($21,180).
+- Multiple address and employment changes, indicating potential instability.
+- Low credit score for Sam Sample (560), which is below average and indicates higher credit risk.
+
+**Insights for Decision-Making**:
+- The high number of past due accounts and significant past due amounts are major risk factors.
+- Sam Sample's low credit score suggests a higher risk of default.
+- Pat Sample has a better credit score, indicating a more favorable credit profile.
+- Consideration should be given to the potential for credit score improvement as indicated by the Credit Score Analysis.
+
+These factors should be carefully considered when deciding on the loan application approval.
