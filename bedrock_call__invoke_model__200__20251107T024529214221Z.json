@@ -1,0 +1,56 @@
+{
+  "http": {
+    "headers": {
+      "RequestId": "6fb747f3-90fd-4e3b-8e67-61a86c83a98a",
+      "connection": "keep-alive",
+      "content-length": "752",
+      "content-type": "application/json",
+      "date": "Fri, 07 Nov 2025 02:45:29 GMT",
+      "x-amzn-bedrock-input-token-count": "14",
+      "x-amzn-bedrock-invocation-latency": "2296",
+      "x-amzn-bedrock-output-token-count": "91",
+      "x-amzn-requestid": "6fb747f3-90fd-4e3b-8e67-61a86c83a98a"
+    },
+    "method": "POST",
+    "status_code": 200
+  },
+  "request": {
+    "endpoint": "/invoke_model",
+    "payload": {
+      "accept": "application/json",
+      "body": "{\"messages\": [{\"role\": \"user\", \"content\": [{\"type\": \"text\", \"text\": \"List two benefits of JSON mode.\"}]}], \"max_tokens\": 200, \"temperature\": 0.2, \"anthropic_version\": \"bedrock-2023-05-31\"}",
+      "contentType": "application/json",
+      "modelId": "us.anthropic.claude-sonnet-4-20250514-v1:0"
+    },
+    "request_hash": "08b3fd59a0906d6f9212b6d8d26cf6bc5daf10a3ad398ed130b7597d0b31a7af",
+    "sent_at": "2025-11-07T02:45:26.900262Z"
+  },
+  "response": {
+    "body": {
+      "content": [
+        {
+          "text": "Here are two key benefits of JSON mode:\n\n1. **Structured Output Guarantee** - JSON mode ensures that the AI's response will always be valid JSON format, eliminating parsing errors and making it reliable for programmatic use in applications.\n\n2. **Seamless Integration** - The structured JSON output can be directly consumed by APIs, databases, and applications without additional formatting or parsing steps, streamlining development workflows.",
+          "type": "text"
+        }
+      ],
+      "id": "msg_bdrk_01Eu6HmT5A2r9YfHCB82z8yx",
+      "model": "claude-sonnet-4-20250514",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 14,
+        "output_tokens": 91
+      }
+    },
+    "model": "claude-sonnet-4-20250514"
+  },
+  "timing": {
+    "completed_at": 1762483529.2140715,
+    "latency_ms": 2313.81,
+    "started_at": 1762483526.900262
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "http": {
+    "headers": {
+      "RequestId": "d8b13284-9f53-4232-bfe5-9364fbf185b7",
+      "connection": "keep-alive",
+      "content-length": "55",
+      "content-type": "application/json",
+      "date": "Fri, 07 Nov 2025 02:45:29 GMT",
+      "x-amzn-errortype": "ValidationException:http://internal.amazon.com/coral/com.amazon.bedrock/",
+      "x-amzn-requestid": "d8b13284-9f53-4232-bfe5-9364fbf185b7"
+    },
+    "method": "POST",
+    "status_code": 400
+  },
+  "request": {
+    "endpoint": "/invoke_model",
+    "payload": {
+      "accept": "application/json",
+      "body": "{\"inputText\": \"hello world\"}",
+      "contentType": "application/json",
+      "modelId": "us.amazon.titan-embed-text-v2:0"
+    },
+    "request_hash": "7cbaca9e2b00ec89a1f41bda5954fcb44cffc80a25bc310fdfd81f33067bac67",
+    "sent_at": "2025-11-07T02:45:29.218502Z"
+  },
+  "response": {
+    "body": {
+      "non_json_body": "An error occurred (ValidationException) when calling the InvokeModel operation: The provided model identifier is invalid."
+    },
+    "model": null
+  },
+  "timing": {
+    "completed_at": 1762483529.2879717,
+    "latency_ms": 69.47,
+    "started_at": 1762483529.218502
+  }
+}
