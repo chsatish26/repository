@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuValidate - Business Solution Design Architecture</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f0f2a 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        .header .subtitle {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .arch-wrapper {
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid;
+        }
+        .legend-line {
+            width: 30px;
+            height: 3px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DocuValidate</h1>
+            <p>Business Solution Design Architecture</p>
+            <p class="subtitle">AI/ML Governance Document Validation System | Multi-Agent Architecture on AWS</p>
+        </div>
+        
+        <div class="arch-wrapper">
+            <svg viewBox="0 0 1500 950" style="width: 100%; height: auto;">
+                <defs>
+                    <!-- Gradients -->
+                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0f172a"/>
+                        <stop offset="50%" stop-color="#1e1b4b"/>
+                        <stop offset="100%" stop-color="#0f172a"/>
+                    </linearGradient>
+                    <linearGradient id="awsBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#FF9900"/>
+                        <stop offset="50%" stop-color="#FFB84D"/>
+                        <stop offset="100%" stop-color="#FF9900"/>
+                    </linearGradient>
+                    <linearGradient id="vpcGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(59,130,246,0.12)"/>
+                        <stop offset="100%" stop-color="rgba(59,130,246,0.03)"/>
+                    </linearGradient>
+                    <linearGradient id="agentLayerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(139,92,246,0.15)"/>
+                        <stop offset="100%" stop-color="rgba(139,92,246,0.05)"/>
+                    </linearGradient>
+                    
+                    <!-- Markers -->
+                    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#3B82F6"/>
+                    </marker>
+                    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#22C55E"/>
+                    </marker>
+                    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#8B5CF6"/>
+                    </marker>
+                    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#F59E0B"/>
+                    </marker>
+                    <marker id="arrowPink" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#EC4899"/>
+                    </marker>
+                    <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L12,4 z" fill="#14B8A6"/>
+                    </marker>
+                    
+                    <!-- Filters -->
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="shadow">
+                        <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.3)"/>
+                    </filter>
+                </defs>
+                
+                <!-- Background -->
+                <rect width="1500" height="950" fill="url(#bgGrad)"/>
+                
+                <!-- AWS Cloud Boundary -->
+                <rect x="25" y="25" width="1450" height="900" rx="25" fill="none" stroke="url(#awsBorder)" stroke-width="4" stroke-dasharray="15,8"/>
+                <rect x="45" y="10" width="140" height="30" fill="#0f172a"/>
+                <text x="55" y="30" fill="#FF9900" font-size="18" font-weight="bold">☁️ AWS Cloud</text>
+                
+                <!-- VPC Boundary -->
+                <rect x="45" y="55" width="1410" height="850" rx="20" fill="url(#vpcGrad)" stroke="#3B82F6" stroke-width="2"/>
+                <text x="65" y="80" fill="#60A5FA" font-size="13" font-weight="600">🔒 VPC - Isolated Security Boundary (Private Subnets)</text>
+                
+                <!-- ==================== ROW 1: CLIENT & INGESTION ==================== -->
+                
+                <!-- Enterprise Users -->
+                <g transform="translate(65, 100)" filter="url(#shadow)">
+                    <rect width="180" height="130" rx="14" fill="rgba(99,102,241,0.12)" stroke="#6366F1" stroke-width="2"/>
+                    <rect x="0" y="0" width="180" height="32" rx="14" fill="rgba(99,102,241,0.25)"/>
+                    <text x="90" y="22" fill="#E0E7FF" font-size="12" font-weight="700" text-anchor="middle">👤 ENTERPRISE USERS</text>
+                    <text x="90" y="55" fill="#A5B4FC" font-size="10" text-anchor="middle">Document Upload Portal</text>
+                    <rect x="15" y="70" width="150" height="45" rx="8" fill="rgba(99,102,241,0.2)" stroke="#818CF8" stroke-width="1"/>
+                    <text x="90" y="88" fill="#C7D2FE" font-size="9" text-anchor="middle">📄 MDD Documents</text>
+                    <text x="90" y="102" fill="#C7D2FE" font-size="9" text-anchor="middle">📄 Deployment Plans</text>
+                </g>
+                
+                <!-- Arrow: Users to API Gateway -->
+                <path d="M255,165 L295,165" stroke="#6366F1" stroke-width="3" marker-end="url(#arrowBlue)"/>
+                
+                <!-- API Gateway (Apigee) -->
+                <g transform="translate(305, 100)" filter="url(#shadow)">
+                    <rect width="160" height="130" rx="14" fill="rgba(249,115,22,0.12)" stroke="#F97316" stroke-width="2"/>
+                    <rect x="0" y="0" width="160" height="32" rx="14" fill="rgba(249,115,22,0.25)"/>
+                    <text x="80" y="22" fill="#FED7AA" font-size="12" font-weight="700" text-anchor="middle">🌐 API GATEWAY</text>
+                    <rect x="15" y="45" width="130" height="70" rx="8" fill="rgba(249,115,22,0.2)" stroke="#FB923C" stroke-width="1"/>
+                    <text x="80" y="65" fill="#FED7AA" font-size="11" font-weight="600" text-anchor="middle">Apigee</text>
+                    <text x="80" y="82" fill="#FDBA74" font-size="9" text-anchor="middle">• Rate Limiting</text>
+                    <text x="80" y="95" fill="#FDBA74" font-size="9" text-anchor="middle">• Request Validation</text>
+                    <text x="80" y="108" fill="#FDBA74" font-size="9" text-anchor="middle">• API Management</text>
+                </g>
+                
+                <!-- Arrow: API Gateway to S3 -->
+                <path d="M475,165 L515,165" stroke="#F97316" stroke-width="3" marker-end="url(#arrowOrange)"/>
+                
+                <!-- S3 Document Storage -->
+                <g transform="translate(525, 100)" filter="url(#shadow)">
+                    <rect width="180" height="130" rx="14" fill="rgba(34,197,94,0.12)" stroke="#22C55E" stroke-width="2"/>
+                    <rect x="0" y="0" width="180" height="32" rx="14" fill="rgba(34,197,94,0.25)"/>
+                    <text x="90" y="22" fill="#BBF7D0" font-size="12" font-weight="700" text-anchor="middle">📦 DOCUMENT STORAGE</text>
+                    <rect x="15" y="45" width="150" height="35" rx="8" fill="rgba(34,197,94,0.2)" stroke="#4ADE80" stroke-width="1"/>
+                    <text x="90" y="68" fill="#BBF7D0" font-size="10" text-anchor="middle">Amazon S3 (Uploads)</text>
+                    <rect x="15" y="88" width="150" height="28" rx="6" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1"/>
+                    <text x="90" y="107" fill="#FECACA" font-size="9" text-anchor="middle">🔐 KMS Encrypted</text>
+                </g>
+                
+                <!-- Arrow: S3 to EventBridge -->
+                <path d="M715,165 L755,165" stroke="#22C55E" stroke-width="3" marker-end="url(#arrowGreen)"/>
+                
+                <!-- EventBridge -->
+                <g transform="translate(765, 100)" filter="url(#shadow)">
+                    <rect width="170" height="130" rx="14" fill="rgba(20,184,166,0.12)" stroke="#14B8A6" stroke-width="2"/>
+                    <rect x="0" y="0" width="170" height="32" rx="14" fill="rgba(20,184,166,0.25)"/>
+                    <text x="85" y="22" fill="#99F6E4" font-size="12" font-weight="700" text-anchor="middle">📡 EVENT BUS</text>
+                    <rect x="15" y="45" width="140" height="70" rx="8" fill="rgba(20,184,166,0.2)" stroke="#2DD4BF" stroke-width="1"/>
+                    <text x="85" y="65" fill="#99F6E4" font-size="11" font-weight="600" text-anchor="middle">EventBridge</text>
+                    <text x="85" y="82" fill="#5EEAD4" font-size="9" text-anchor="middle">• S3 Event Triggers</text>
+                    <text x="85" y="95" fill="#5EEAD4" font-size="9" text-anchor="middle">• Rule Matching</text>
+                    <text x="85" y="108" fill="#5EEAD4" font-size="9" text-anchor="middle">• Workflow Initiation</text>
+                </g>
+                
+                <!-- Arrow: EventBridge to Step Functions -->
+                <path d="M945,165 L985,165" stroke="#14B8A6" stroke-width="3" marker-end="url(#arrowTeal)"/>
+                
+                <!-- Step Functions -->
+                <g transform="translate(995, 100)" filter="url(#shadow)">
+                    <rect width="200" height="130" rx="14" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="2"/>
+                    <rect x="0" y="0" width="200" height="32" rx="14" fill="rgba(59,130,246,0.25)"/>
+                    <text x="100" y="22" fill="#BFDBFE" font-size="12" font-weight="700" text-anchor="middle">⚡ ORCHESTRATION</text>
+                    <rect x="15" y="45" width="170" height="70" rx="8" fill="rgba(59,130,246,0.2)" stroke="#60A5FA" stroke-width="1"/>
+                    <text x="100" y="65" fill="#BFDBFE" font-size="11" font-weight="600" text-anchor="middle">AWS Step Functions</text>
+                    <text x="100" y="82" fill="#93C5FD" font-size="9" text-anchor="middle">• State Machine</text>
+                    <text x="100" y="95" fill="#93C5FD" font-size="9" text-anchor="middle">• Error Handling</text>
+                    <text x="100" y="108" fill="#93C5FD" font-size="9" text-anchor="middle">• Parallel Execution</text>
+                </g>
+                
+                <!-- SSO/Auth (Top Right) -->
+                <g transform="translate(1230, 100)" filter="url(#shadow)">
+                    <rect width="200" height="130" rx="14" fill="rgba(239,68,68,0.12)" stroke="#EF4444" stroke-width="2"/>
+                    <rect x="0" y="0" width="200" height="32" rx="14" fill="rgba(239,68,68,0.25)"/>
+                    <text x="100" y="22" fill="#FECACA" font-size="12" font-weight="700" text-anchor="middle">🔐 AUTHENTICATION</text>
+                    <rect x="15" y="45" width="170" height="35" rx="8" fill="rgba(239,68,68,0.2)" stroke="#F87171" stroke-width="1"/>
+                    <text x="100" y="68" fill="#FECACA" font-size="10" text-anchor="middle">FM SSO Ping</text>
+                    <rect x="15" y="88" width="170" height="28" rx="6" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1"/>
+                    <text x="100" y="107" fill="#FCA5A5" font-size="9" text-anchor="middle">IAM Role-Based Access</text>
+                </g>
+                
+                <!-- ==================== ROW 2: MULTI-AGENT LAYER ==================== -->
+                
+                <!-- Agent Orchestration Layer -->
+                <g transform="translate(65, 260)">
+                    <rect width="1365" height="310" rx="18" fill="url(#agentLayerGrad)" stroke="#8B5CF6" stroke-width="2.5"/>
+                    <rect x="0" y="0" width="1365" height="38" rx="18" fill="rgba(139,92,246,0.2)"/>
+                    <text x="682" y="26" fill="#DDD6FE" font-size="15" font-weight="800" text-anchor="middle">🤖 MULTI-AGENT ORCHESTRATION LAYER</text>
+                    
+                    <!-- Agent 1: Section Mapping -->
+                    <g transform="translate(25, 55)">
+                        <rect width="200" height="120" rx="12" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="2"/>
+                        <rect x="0" y="0" width="200" height="28" rx="12" fill="rgba(59,130,246,0.3)"/>
+                        <text x="100" y="19" fill="#BFDBFE" font-size="10" font-weight="700" text-anchor="middle">📑 SECTION MAPPING AGENT</text>
+                        <text x="100" y="48" fill="#93C5FD" font-size="9" text-anchor="middle">Structural Alignment</text>
+                        <text x="100" y="65" fill="#60A5FA" font-size="8" text-anchor="middle">• Parse document structure</text>
+                        <text x="100" y="78" fill="#60A5FA" font-size="8" text-anchor="middle">• Map to governance template</text>
+                        <text x="100" y="91" fill="#60A5FA" font-size="8" text-anchor="middle">• Preserve content integrity</text>
+                        <rect x="55" y="100" width="90" height="16" rx="4" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1"/>
+                        <text x="100" y="112" fill="#60A5FA" font-size="8" font-weight="600" text-anchor="middle">ECS Fargate</text>
+                    </g>
+                    
+                    <!-- Arrow 1-2 -->
+                    <path d="M230,115 L250,115" stroke="#60A5FA" stroke-width="2" marker-end="url(#arrowBlue)"/>
+                    
+                    <!-- Agent 2: Rules Retrieval -->
+                    <g transform="translate(255, 55)">
+                        <rect width="200" height="120" rx="12" fill="rgba(139,92,246,0.15)" stroke="#8B5CF6" stroke-width="2"/>
+                        <rect x="0" y="0" width="200" height="28" rx="12" fill="rgba(139,92,246,0.3)"/>
+                        <text x="100" y="19" fill="#DDD6FE" font-size="10" font-weight="700" text-anchor="middle">📋 RULES RETRIEVAL AGENT</text>
+                        <text x="100" y="48" fill="#C4B5FD" font-size="9" text-anchor="middle">Policy Intelligence</text>
+                        <text x="100" y="65" fill="#A78BFA" font-size="8" text-anchor="middle">• Fetch governance rules</text>
+                        <text x="100" y="78" fill="#A78BFA" font-size="8" text-anchor="middle">• Normalize to JSON</text>
+                        <text x="100" y="91" fill="#A78BFA" font-size="8" text-anchor="middle">• Version control rules</text>
+                        <rect x="55" y="100" width="90" height="16" rx="4" fill="#2E1065" stroke="#8B5CF6" stroke-width="1"/>
+                        <text x="100" y="112" fill="#A78BFA" font-size="8" font-weight="600" text-anchor="middle">Lambda</text>
+                    </g>
+                    
+                    <!-- Arrow 2-3 -->
+                    <path d="M460,115 L480,115" stroke="#A78BFA" stroke-width="2" marker-end="url(#arrowPurple)"/>
+                    
+                    <!-- Agent 3: Evaluation -->
+                    <g transform="translate(485, 55)">
+                        <rect width="200" height="120" rx="12" fill="rgba(236,72,153,0.15)" stroke="#EC4899" stroke-width="2"/>
+                        <rect x="0" y="0" width="200" height="28" rx="12" fill="rgba(236,72,153,0.3)"/>
+                        <text x="100" y="19" fill="#FBCFE8" font-size="10" font-weight="700" text-anchor="middle">🔍 EVALUATION AGENT</text>
+                        <text x="100" y="48" fill="#F9A8D4" font-size="9" text-anchor="middle">Compliance Reviewer</text>
+                        <text x="100" y="65" fill="#F472B6" font-size="8" text-anchor="middle">• Rule-based validation</text>
+                        <text x="100" y="78" fill="#F472B6" font-size="8" text-anchor="middle">• Gap identification</text>
+                        <text x="100" y="91" fill="#F472B6" font-size="8" text-anchor="middle">• Duplicate detection</text>
+                        <rect x="55" y="100" width="90" height="16" rx="4" fill="#500724" stroke="#EC4899" stroke-width="1"/>
+                        <text x="100" y="112" fill="#F472B6" font-size="8" font-weight="600" text-anchor="middle">ECS Fargate</text>
+                    </g>
+                    
+                    <!-- Arrow 3-4 -->
+                    <path d="M690,115 L710,115" stroke="#F472B6" stroke-width="2" marker-end="url(#arrowPink)"/>
+                    
+                    <!-- Agent 4: DocuScorer -->
+                    <g transform="translate(715, 55)">
+                        <rect width="200" height="120" rx="12" fill="rgba(245,158,11,0.15)" stroke="#F59E0B" stroke-width="2"/>
+                        <rect x="0" y="0" width="200" height="28" rx="12" fill="rgba(245,158,11,0.3)"/>
+                        <text x="100" y="19" fill="#FEF3C7" font-size="10" font-weight="700" text-anchor="middle">📊 DOCUSCORER MODULE</text>
+                        <text x="100" y="48" fill="#FDE68A" font-size="9" text-anchor="middle">Classification Engine</text>
+                        <text x="100" y="65" fill="#FBBF24" font-size="8" text-anchor="middle">• Calculate compliance score</text>
+                        <text x="100" y="78" fill="#FBBF24" font-size="8" text-anchor="middle">• Classify: ✅ ⚠️ ❌</text>
+                        <text x="100" y="91" fill="#FBBF24" font-size="8" text-anchor="middle">• Section breakdown</text>
+                        <rect x="55" y="100" width="90" height="16" rx="4" fill="#451A03" stroke="#F59E0B" stroke-width="1"/>
+                        <text x="100" y="112" fill="#FBBF24" font-size="8" font-weight="600" text-anchor="middle">Lambda</text>
+                    </g>
+                    
+                    <!-- Arrow 4-5 -->
+                    <path d="M920,115 L940,115" stroke="#FBBF24" stroke-width="2" marker-end="url(#arrowOrange)"/>
+                    
+                    <!-- Agent 5: Recommendation -->
+                    <g transform="translate(945, 55)">
+                        <rect width="200" height="120" rx="12" fill="rgba(16,185,129,0.15)" stroke="#10B981" stroke-width="2"/>
+                        <rect x="0" y="0" width="200" height="28" rx="12" fill="rgba(16,185,129,0.3)"/>
+                        <text x="100" y="19" fill="#A7F3D0" font-size="10" font-weight="700" text-anchor="middle">💡 RECOMMENDATION AGENT</text>
+                        <text x="100" y="48" fill="#6EE7B7" font-size="9" text-anchor="middle">Gap Analysis</text>
+                        <text x="100" y="65" fill="#34D399" font-size="8" text-anchor="middle">• Identify specific gaps</text>
+                        <text x="100" y="78" fill="#34D399" font-size="8" text-anchor="middle">• Reorganization suggest</text>
+                        <text x="100" y="91" fill="#34D399" font-size="8" text-anchor="middle">• Actionable items</text>
+                        <rect x="55" y="100" width="90" height="16" rx="4" fill="#064E3B" stroke="#10B981" stroke-width="1"/>
+                        <text x="100" y="112" fill="#34D399" font-size="8" font-weight="600" text-anchor="middle">ECS Fargate</text>
+                    </g>
+                    
+                    <!-- Arrow 5-6 -->
+                    <path d="M1150,115 L1170,115" stroke="#34D399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+                    
+                    <!-- Agent 6: Report Generation -->
+                    <g transform="translate(1175, 55)">
+                        <rect width="170" height="120" rx="12" fill="rgba(99,102,241,0.15)" stroke="#6366F1" stroke-width="2"/>
+                        <rect x="0" y="0" width="170" height="28" rx="12" fill="rgba(99,102,241,0.3)"/>
+                        <text x="85" y="19" fill="#E0E7FF" font-size="10" font-weight="700" text-anchor="middle">📄 REPORT GEN AGENT</text>
+                        <text x="85" y="48" fill="#C7D2FE" font-size="9" text-anchor="middle">Executive Reporting</text>
+                        <text x="85" y="65" fill="#818CF8" font-size="8" text-anchor="middle">• Aggregate outputs</text>
+                        <text x="85" y="78" fill="#818CF8" font-size="8" text-anchor="middle">• Generate PDF/JSON</text>
+                        <text x="85" y="91" fill="#818CF8" font-size="8" text-anchor="middle">• Audit-ready format</text>
+                        <rect x="40" y="100" width="90" height="16" rx="4" fill="#312E81" stroke="#6366F1" stroke-width="1"/>
+                        <text x="85" y="112" fill="#818CF8" font-size="8" font-weight="600" text-anchor="middle">Lambda</text>
+                    </g>
+                    
+                    <!-- Amazon Bedrock (LLM Foundation) -->
+                    <g transform="translate(25, 195)">
+                        <rect width="650" height="70" rx="12" fill="rgba(236,72,153,0.1)" stroke="#EC4899" stroke-width="2"/>
+                        <text x="30" y="28" fill="#FBCFE8" font-size="12" font-weight="700">🧠 Amazon Bedrock</text>
+                        <text x="30" y="48" fill="#F9A8D4" font-size="10">Claude Sonnet 3.7 | Foundation Model for Semantic Analysis</text>
+                        <text x="30" y="62" fill="#F472B6" font-size="9">Powers: Section Mapping • Evaluation • Recommendation Agents</text>
+                        
+                        <!-- Bedrock Guardrails -->
+                        <rect x="480" y="15" width="150" height="40" rx="8" fill="rgba(239,68,68,0.2)" stroke="#F87171" stroke-width="1"/>
+                        <text x="555" y="32" fill="#FECACA" font-size="9" font-weight="600" text-anchor="middle">🛡️ Bedrock Guardrails</text>
+                        <text x="555" y="46" fill="#FCA5A5" font-size="8" text-anchor="middle">Content Filtering</text>
+                    </g>
+                    
+                    <!-- AI Gateway -->
+                    <g transform="translate(695, 195)">
+                        <rect width="300" height="70" rx="12" fill="rgba(139,92,246,0.1)" stroke="#8B5CF6" stroke-width="2"/>
+                        <text x="150" y="28" fill="#DDD6FE" font-size="12" font-weight="700" text-anchor="middle">🚪 AI Dome Gateway</text>
+                        <text x="150" y="48" fill="#C4B5FD" font-size="10" text-anchor="middle">AI Traffic Management & Monitoring</text>
+                        <text x="150" y="62" fill="#A78BFA" font-size="9" text-anchor="middle">Request Logging • Rate Limiting • Model Routing</text>
+                    </g>
+                    
+                    <!-- Output Storage -->
+                    <g transform="translate(1015, 195)">
+                        <rect width="330" height="70" rx="12" fill="rgba(34,197,94,0.1)" stroke="#22C55E" stroke-width="2"/>
+                        <text x="165" y="28" fill="#BBF7D0" font-size="12" font-weight="700" text-anchor="middle">📦 Output Storage & Delivery</text>
+                        <rect x="15" y="40" width="95" height="22" rx="5" fill="rgba(34,197,94,0.2)"/>
+                        <text x="62" y="55" fill="#86EFAC" font-size="9" text-anchor="middle">S3 Reports</text>
+                        <rect x="120" y="40" width="95" height="22" rx="5" fill="rgba(34,197,94,0.2)"/>
+                        <text x="167" y="55" fill="#86EFAC" font-size="9" text-anchor="middle">SNS Notify</text>
+                        <rect x="225" y="40" width="95" height="22" rx="5" fill="rgba(34,197,94,0.2)"/>
+                        <text x="272" y="55" fill="#86EFAC" font-size="9" text-anchor="middle">Dashboard</text>
+                    </g>
+                </g>
+                
+                <!-- ==================== ROW 3: EXTERNAL INTEGRATIONS ==================== -->
+                
+                <g transform="translate(65, 600)">
+                    <rect width="650" height="120" rx="16" fill="rgba(245,158,11,0.08)" stroke="#F59E0B" stroke-width="2" stroke-dasharray="8,4"/>
+                    <rect x="0" y="0" width="650" height="32" rx="16" fill="rgba(245,158,11,0.15)"/>
+                    <text x="325" y="22" fill="#FEF3C7" font-size="13" font-weight="700" text-anchor="middle">🔗 EXTERNAL SYSTEM INTEGRATIONS</text>
+                    
+                    <!-- Policy Repository -->
+                    <g transform="translate(25, 45)">
+                        <rect width="185" height="60" rx="10" fill="rgba(245,158,11,0.15)" stroke="#FBBF24" stroke-width="1.5"/>
+                        <text x="92" y="22" fill="#FEF3C7" font-size="11" font-weight="600" text-anchor="middle">📚 Internal Policy Repo</text>
+                        <text x="92" y="40" fill="#FDE68A" font-size="9" text-anchor="middle">Governance Standards</text>
+                        <text x="92" y="52" fill="#FBBF24" font-size="8" text-anchor="middle">REST API Integration</text>
+                    </g>
+                    
+                    <!-- Risk Works -->
+                    <g transform="translate(230, 45)">
+                        <rect width="185" height="60" rx="10" fill="rgba(245,158,11,0.15)" stroke="#FBBF24" stroke-width="1.5"/>
+                        <text x="92" y="22" fill="#FEF3C7" font-size="11" font-weight="600" text-anchor="middle">⚠️ Risk Works System</text>
+                        <text x="92" y="40" fill="#FDE68A" font-size="9" text-anchor="middle">Compliance Requirements</text>
+                        <text x="92" y="52" fill="#FBBF24" font-size="8" text-anchor="middle">REST API Integration</text>
+                    </g>
+                    
+                    <!-- Regulatory DB -->
+                    <g transform="translate(435, 45)">
+                        <rect width="185" height="60" rx="10" fill="rgba(245,158,11,0.15)" stroke="#FBBF24" stroke-width="1.5"/>
+                        <text x="92" y="22" fill="#FEF3C7" font-size="11" font-weight="600" text-anchor="middle">📋 Regulatory Database</text>
+                        <text x="92" y="40" fill="#FDE68A" font-size="9" text-anchor="middle">Industry Standards</text>
+                        <text x="92" y="52" fill="#FBBF24" font-size="8" text-anchor="middle">REST API Integration</text>
+                    </g>
+                </g>
+                
+                <!-- Arrow from External to Agent Layer -->
+                <path d="M390,600 L390,570" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowOrange)"/>
+                
+                <!-- ==================== ROW 3: SECURITY & GOVERNANCE ==================== -->
+                
+                <g transform="translate(735, 600)">
+                    <rect width="695" height="120" rx="16" fill="rgba(239,68,68,0.08)" stroke="#EF4444" stroke-width="2"/>
+                    <rect x="0" y="0" width="695" height="32" rx="16" fill="rgba(239,68,68,0.15)"/>
+                    <text x="347" y="22" fill="#FECACA" font-size="13" font-weight="700" text-anchor="middle">🛡️ SECURITY & GOVERNANCE LAYER</text>
+                    
+                    <!-- IAM -->
+                    <g transform="translate(20, 45)">
+                        <rect width="100" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="50" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">🔐 IAM</text>
+                        <text x="50" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Role-Based</text>
+                        <text x="50" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">Access Control</text>
+                    </g>
+                    
+                    <!-- KMS -->
+                    <g transform="translate(135, 45)">
+                        <rect width="100" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="50" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">🔑 KMS</text>
+                        <text x="50" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Encryption</text>
+                        <text x="50" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">Key Mgmt</text>
+                    </g>
+                    
+                    <!-- CloudTrail -->
+                    <g transform="translate(250, 45)">
+                        <rect width="100" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="50" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">📝 CloudTrail</text>
+                        <text x="50" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Audit</text>
+                        <text x="50" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">Logging</text>
+                    </g>
+                    
+                    <!-- CloudWatch -->
+                    <g transform="translate(365, 45)">
+                        <rect width="100" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="50" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">📈 CloudWatch</text>
+                        <text x="50" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Monitoring</text>
+                        <text x="50" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">& Alerts</text>
+                    </g>
+                    
+                    <!-- GuardDuty -->
+                    <g transform="translate(480, 45)">
+                        <rect width="100" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="50" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">🚨 GuardDuty</text>
+                        <text x="50" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Threat</text>
+                        <text x="50" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">Detection</text>
+                    </g>
+                    
+                    <!-- WAF -->
+                    <g transform="translate(595, 45)">
+                        <rect width="80" height="60" rx="8" fill="rgba(239,68,68,0.15)" stroke="#F87171" stroke-width="1.5"/>
+                        <text x="40" y="22" fill="#FECACA" font-size="10" font-weight="600" text-anchor="middle">🛡️ WAF</text>
+                        <text x="40" y="38" fill="#FCA5A5" font-size="8" text-anchor="middle">Web App</text>
+                        <text x="40" y="50" fill="#FCA5A5" font-size="8" text-anchor="middle">Firewall</text>
+                    </g>
+                </g>
+                
+                <!-- ==================== ROW 4: DATA STORES ==================== -->
+                
+                <g transform="translate(65, 750)">
+                    <rect width="1365" height="100" rx="16" fill="rgba(59,130,246,0.08)" stroke="#3B82F6" stroke-width="2"/>
+                    <rect x="0" y="0" width="1365" height="32" rx="16" fill="rgba(59,130,246,0.12)"/>
+                    <text x="682" y="22" fill="#BFDBFE" font-size="13" font-weight="700" text-anchor="middle">💾 DATA PERSISTENCE LAYER</text>
+                    
+                    <!-- RDS PostgreSQL -->
+                    <g transform="translate(50, 45)">
+                        <rect width="200" height="45" rx="8" fill="rgba(59,130,246,0.15)" stroke="#60A5FA" stroke-width="1.5"/>
+                        <text x="100" y="20" fill="#BFDBFE" font-size="11" font-weight="600" text-anchor="middle">🐘 RDS PostgreSQL</text>
+                        <text x="100" y="36" fill="#93C5FD" font-size="9" text-anchor="middle">Metadata & Audit Logs</text>
+                    </g>
+                    
+                    <!-- DocumentDB -->
+                    <g transform="translate(280, 45)">
+                        <rect width="200" height="45" rx="8" fill="rgba(59,130,246,0.15)" stroke="#60A5FA" stroke-width="1.5"/>
+                        <text x="100" y="20" fill="#BFDBFE" font-size="11" font-weight="600" text-anchor="middle">🍃 DocumentDB</text>
+                        <text x="100" y="36" fill="#93C5FD" font-size="9" text-anchor="middle">Document Mappings JSON</text>
+                    </g>
+                    
+                    <!-- ElastiCache -->
+                    <g transform="translate(510, 45)">
+                        <rect width="200" height="45" rx="8" fill="rgba(59,130,246,0.15)" stroke="#60A5FA" stroke-width="1.5"/>
+                        <text x="100" y="20" fill="#BFDBFE" font-size="11" font-weight="600" text-anchor="middle">⚡ ElastiCache Redis</text>
+                        <text x="100" y="36" fill="#93C5FD" font-size="9" text-anchor="middle">Rules Cache & Session</text>
+                    </g>
+                    
+                    <!-- S3 Data Lake -->
+                    <g transform="translate(740, 45)">
+                        <rect width="200" height="45" rx="8" fill="rgba(34,197,94,0.15)" stroke="#4ADE80" stroke-width="1.5"/>
+                        <text x="100" y="20" fill="#BBF7D0" font-size="11" font-weight="600" text-anchor="middle">📦 S3 Data Lake</text>
+                        <text x="100" y="36" fill="#86EFAC" font-size="9" text-anchor="middle">Raw Docs & Reports</text>
+                    </g>
+                    
+                    <!-- Vector DB -->
+                    <g transform="translate(970, 45)">
+                        <rect width="200" height="45" rx="8" fill="rgba(139,92,246,0.15)" stroke="#A78BFA" stroke-width="1.5"/>
+                        <text x="100" y="20" fill="#DDD6FE" font-size="11" font-weight="600" text-anchor="middle">🔮 OpenSearch Vector</text>
+                        <text x="100" y="36" fill="#C4B5FD" font-size="9" text-anchor="middle">Semantic Search Index</text>
+                    </g>
+                    
+                    <!-- DynamoDB -->
+                    <g transform="translate(1200, 45)">
+                        <rect width="140" height="45" rx="8" fill="rgba(245,158,11,0.15)" stroke="#FBBF24" stroke-width="1.5"/>
+                        <text x="70" y="20" fill="#FEF3C7" font-size="11" font-weight="600" text-anchor="middle">⚡ DynamoDB</text>
+                        <text x="70" y="36" fill="#FDE68A" font-size="9" text-anchor="middle">State Mgmt</text>
+                    </g>
+                </g>
+                
+                <!-- ==================== CONSTRAINTS BOX ==================== -->
+                
+                <g transform="translate(65, 870)">
+                    <rect width="1365" height="55" rx="12" fill="rgba(239,68,68,0.1)" stroke="#EF4444" stroke-width="2"/>
+                    <text x="30" y="22" fill="#FCA5A5" font-size="12" font-weight="700">⚠️ SYSTEM CONSTRAINTS (NON-NEGOTIABLE):</text>
+                    
+                    <g transform="translate(320, 8)">
+                        <rect width="120" height="38" rx="6" fill="rgba(239,68,68,0.2)"/>
+                        <text x="60" y="17" fill="#FECACA" font-size="16" text-anchor="middle">❌</text>
+                        <text x="60" y="32" fill="#FCA5A5" font-size="8" text-anchor="middle">No Hallucinations</text>
+                    </g>
+                    
+                    <g transform="translate(460, 8)">
+                        <rect width="120" height="38" rx="6" fill="rgba(239,68,68,0.2)"/>
+                        <text x="60" y="17" fill="#FECACA" font-size="16" text-anchor="middle">❌</text>
+                        <text x="60" y="32" fill="#FCA5A5" font-size="8" text-anchor="middle">No Content Deletion</text>
+                    </g>
+                    
+                    <g transform="translate(600, 8)">
+                        <rect width="130" height="38" rx="6" fill="rgba(34,197,94,0.2)"/>
+                        <text x="65" y="17" fill="#BBF7D0" font-size="16" text-anchor="middle">✅</text>
+                        <text x="65" y="32" fill="#86EFAC" font-size="8" text-anchor="middle">Re-map & Validate Only</text>
+                    </g>
+                    
+                    <g transform="translate(750, 8)">
+                        <rect width="140" height="38" rx="6" fill="rgba(34,197,94,0.2)"/>
+                        <text x="70" y="17" fill="#BBF7D0" font-size="16" text-anchor="middle">✅</text>
+                        <text x="70" y="32" fill="#86EFAC" font-size="8" text-anchor="middle">External Rules Source Only</text>
+                    </g>
+                    
+                    <g transform="translate(910, 8)">
+                        <rect width="130" height="38" rx="6" fill="rgba(59,130,246,0.2)"/>
+                        <text x="65" y="17" fill="#BFDBFE" font-size="16" text-anchor="middle">🔒</text>
+                        <text x="65" y="32" fill="#93C5FD" font-size="8" text-anchor="middle">AWS Governed</text>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background: rgba(59,130,246,0.2); border-color: #3B82F6;"></div>
+                <span>ECS Fargate (Long-running)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: rgba(139,92,246,0.2); border-color: #8B5CF6;"></div>
+                <span>Lambda (Short-lived)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: rgba(34,197,94,0.2); border-color: #22C55E;"></div>
+                <span>Storage Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: rgba(239,68,68,0.2); border-color: #EF4444;"></div>
+                <span>Security Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: rgba(245,158,11,0.2); border-color: #F59E0B;"></div>
+                <span>External Integrations</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #60A5FA;"></div>
+                <span>Data Flow</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #F59E0B; border-style: dashed;"></div>
+                <span>External API Call</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
